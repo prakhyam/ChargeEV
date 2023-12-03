@@ -12,10 +12,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { ZipCodeSearchComponent } from './zip-code-search/zip-code-search.component';
+
 import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { UserComponent } from './user/user.component';
+import { UserlandingComponent } from './userlanding/userlanding.component';
+import { TableListComponent } from './table-list/table-list.component';
+import { TransactionsComponent } from './transactions/transactions.component';
+
 
 @NgModule({
   imports: [
@@ -34,9 +39,13 @@ import { NavbarComponent } from './components/navbar/navbar.component';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    ZipCodeSearchComponent,
+  
     LandingComponent,
     LoginComponent,
+    UserComponent,
+    UserlandingComponent,
+    TransactionsComponent,
+    
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
