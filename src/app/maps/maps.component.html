@@ -29,12 +29,14 @@
                </div>
              </div>
              <div *ngIf="selectedStation" class="station-details-sidebar">
+              <button class="close-button" (click)="closeSidebar()">X</button>
               <h2 style="color:rgb(127, 63, 63);"><strong>{{ selectedStation.Station_Name }}</strong></h2>
               <p>{{ selectedStation.Address }}</p>
               <p>City: {{ selectedStation.City }}</p>
               <p>ZIP: {{ selectedStation.ZIP }}</p>
               <p>Level 2 Chargers: {{ selectedStation.Num_Level_2 }}</p>
               <p>Level 1 Chargers: {{ selectedStation.Num_level_1 }}</p>
+              <p> Maintenance: {{ selectedStation.Maintenance}}</p>
             </div>
             <div [ngClass]="mapClass" id="map" style="height: 600px;"></div>
             <div class="map-legend">

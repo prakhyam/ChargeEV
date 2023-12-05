@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild, ElementRef, NgZone, Input  } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone, Input } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { ActivatedRoute } from '@angular/router';
 import PerfectScrollbar from 'perfect-scrollbar';
@@ -20,6 +20,7 @@ interface ApiResponse {
     Address: string;
     ZIP: string;
     id?: string;
+    Maintenance: boolean;
 }
 
 interface Station {
@@ -47,6 +48,10 @@ export class UserComponent implements OnInit {
 
     private directionsService = new google.maps.DirectionsService();
     private directionsRenderer = new google.maps.DirectionsRenderer();
+    private regularIcon: any;
+    private maintenanceIcon: any;
+
+    
 
     
     @Input() mapClass: string; 
@@ -60,10 +65,14 @@ export class UserComponent implements OnInit {
 
     /// <reference types="@types/googlemaps" />
 
-    constructor(private http: HttpClient, private ngZone: NgZone, private route: ActivatedRoute) {}
+    constructor(private http: HttpClient, private ngZone: NgZone, private route: ActivatedRoute) {
+
+    }
 
     ngOnInit() {
-      this.initMap();
+      setTimeout(() => {
+        this.initMap();
+      }, 1000);
       this.route.queryParams.subscribe(params => {
         if (params['location']) {
           this.location = params['location'];
@@ -94,7 +103,7 @@ export class UserComponent implements OnInit {
         });
       });
     }
-
+   
     private initMap(): void {
         this.map = new google.maps.Map(document.getElementById('map'), {
             zoom: 10,
@@ -172,6 +181,7 @@ export class UserComponent implements OnInit {
               let infoContent = `<div><strong>${location.Station_Name}</strong><br>`;
               infoContent += `City: ${location.City}, ${location.State}<br>`;
               infoContent += `ZIP: ${location.ZIP}<br>`;
+              infoContent += `Availability: ${location.Maintenance}<br>`;
               infoContent += `Address: ${location.Address}<br>`;
               infoContent += `Level 2 Chargers: ${location.Num_Level_2}<br>`;
               infoContent += `Level 1 Chargers: ${location.Num_level_1 ?? 'N/A'}<br>`;
@@ -214,12 +224,26 @@ closePopup(): void {
   // Additional logic if required
 }
 private addMarker(location: ApiResponse): void {
-      const customIcon = {
-        url: 'assets/img/ev_mapIcon.png', // The URL to your marker image
-        scaledSize: new google.maps.Size(60, 60), // Size of the icon
-        origin: new google.maps.Point(0, 0), // Origin point of the icon
-        anchor: new google.maps.Point(30, 30), // Anchor point. Assumes the tip of the icon is at the bottom center
-      };
+  let customIcon: any;
+  if (location.Station_Name === "Los Angeles Convention Center" && location.ZIP === "90015") {
+    // Use a different icon for the specific station
+    customIcon = {
+      url: 'assets/img/unavailable.jpeg', // URL to the special maintenance station icon
+      scaledSize: new google.maps.Size(60, 60),
+      origin: new google.maps.Point(0, 0),
+      anchor: new google.maps.Point(30, 30),
+    };
+  } else {
+    // Use the regular icon for other stations
+    customIcon = {
+      url: 'assets/img/ev_mapIcon.png', // URL to the regular station icon
+      scaledSize: new google.maps.Size(60, 60),
+      origin: new google.maps.Point(0, 0),
+      anchor: new google.maps.Point(30, 30),
+    };
+  }
+
+     
       const marker = new google.maps.Marker({
         position: { lat: location.Latitude, lng: location.Longitude },
         map: this.map,

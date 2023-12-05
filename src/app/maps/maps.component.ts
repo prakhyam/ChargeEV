@@ -17,6 +17,7 @@ interface ApiResponse {
     Address: string;
     ZIP: string;
     id?: string;
+    Maintenance: boolean;
 }
 
 @Component({
@@ -96,6 +97,7 @@ export class MapsComponent implements OnInit {
               infoContent += `Address: ${location.Address}<br>`;
               infoContent += `Level 2 Chargers: ${location.Num_Level_2}<br>`;
               infoContent += `Level 1 Chargers: ${location.Num_level_1 ?? 'N/A'}</div>`;
+              infoContent += `Maintenance: ${location.Maintenance}`;
 
               this.addMarker(location);
             });
@@ -164,6 +166,11 @@ private addMarker(location: ApiResponse): void {
 }
 
      */
+
+closeSidebar(): void {
+  this.selectedStation = null; // This will hide the sidebar
+}
+
 private getCustomIcon(isUnderMaintenance: boolean): any {
   let iconName;
   if (isUnderMaintenance) {
@@ -185,10 +192,20 @@ closePopup(): void {
   // Additional logic if required
 }
     private addMarker(location: ApiResponse): void {
+      let iconUrl;
+
+     if (location.Maintenance) {
+        // Path to your maintenance icon
+        iconUrl = '/assets/img/unavailable.jpeg';
+    } else {
+        // Path to your normal icon
+        iconUrl = 'assets/img/ev_mapIcon.png';
+    }
+
       
       const customIcon = {
         
-        url: 'assets/img/ev_mapIcon.png', // The URL to your marker image
+        url: iconUrl, // The URL to your marker image
         scaledSize: new google.maps.Size(60, 60), // Size of the icon
         origin: new google.maps.Point(0, 0), // Origin point of the icon
         anchor: new google.maps.Point(30, 30), // Anchor point. Assumes the tip of the icon is at the bottom center
@@ -211,11 +228,15 @@ closePopup(): void {
             + `ZIP: ${location.ZIP}<br>`
             + `Address: ${location.Address}<br>`
             + `Level 2 Chargers: ${location.Num_Level_2}<br>`
+            + `Maintenance: ${location.Maintenance}<br>`
             + `Level 1 Chargers: ${location.Num_level_1 ?? 'N/A'}</div>`
+            
         });
         infoWindow.open(this.map, marker);
         this.currentInfoWindow = infoWindow;
         this.selectedStation = location; // Update the selected station details
+
+    
        });
 
       this.markers.push(marker);

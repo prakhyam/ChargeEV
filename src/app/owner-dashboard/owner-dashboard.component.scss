@@ -25,6 +25,28 @@
     -webkit-transition: .4s;
     transition: .4s;
   }
+
+  .navbar li {
+    list-style-type: none; /* Removes bullet points */
+    margin: 0; /* Removes default margin */
+    padding: 0; /* Removes default padding */
+  }
+  
+  // Set the card's background to black and text color to white for visibility
+  .card {
+    background-color: black;
+    color: white;
+  }
+    .navbar {
+      background-color: #333;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5em 1em;
+      .navbar-brand {
+          font-size: 1.5em;
+      }
+  }
   
   .slider:before {
     position: absolute;
@@ -44,6 +66,7 @@
 
 .owner-dashboard {
     display: flex;
+    background-color: #333;
     height: 100vh; /* Set the height to full viewport height */
   }// Ensures the sidebar and content are side-by-side
     
@@ -152,6 +175,7 @@
 
       .card-body {
         padding: 16px;
+        height: relative;
       }
     }
 }}
@@ -162,6 +186,7 @@
 .station-management{
     float: left;
     size: 900px;
+    color: white;
 }
 
 .dashboard-container {

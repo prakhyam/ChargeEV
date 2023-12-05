@@ -31,20 +31,22 @@
     <button (click)="displayLocation()" class="search-button">Search</button>
   </div>
   <div class="content">
-    <div  class="search-results">
+    <div  class="search-results" style="widht: 15px;">
       <div *ngFor="let station of stations" class="station-item" (click)="selectStation(station)">
         <div class="station-header">
-        <img src="assets/img/evList-logo.png" alt="{{ station.Station_Name }} Logo" class="station-logo">
-        <h3>{{ station.Station_Name }}</h3>
+          <img [src]="station.Station_Name === 'Los Angeles Convention Center' ? 'assets/img/unavailable.jpeg' : 'assets/img/evList-logo.png'" alt="{{ station.Station_Name }} Logo" class="station-logo">
+          <h3 [style.color]=" station.Station_Name === 'Los Angeles Convention Center' ? 'red' : 'black'">{{ station.Station_Name }}</h3>
         </div>
+        <p *ngIf="station.Station_Name == 'Los Angeles Convention Center'" style="color: red;">Not available</p>
         <p>{{ station.Address }}</p>
         <p>{{ station.City }}, {{ station.State }} {{ station.ZIP }}</p>
       </div>
-      <div *ngIf="selectedStation" class="station-details-sidebar" style="color: black">
+      <div *ngIf="selectedStation" class="station-details-sidebar" style="color: black; width:10%">
       <h2 style="color:rgb(127, 63, 63);"><strong>{{ selectedStation.Station_Name }}</strong></h2>
       <p>{{ selectedStation.Address }}</p>
       <p>City: {{ selectedStation.City }}</p>
       <p>ZIP: {{ selectedStation.ZIP }}</p>
+    
       <p>Level 2 Chargers: {{ selectedStation.Num_Level_2 }}</p>
       <p>Level 1 Chargers: {{ selectedStation.Num_level_1 }}</p>
       <button (click)="backToList()" class="back-button">Back</button>
