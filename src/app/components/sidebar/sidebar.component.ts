@@ -17,8 +17,8 @@ export const ROUTES: RouteInfo[] = [
       class: '', 
       submenu: [
           { path: '/add-stations', title: ' Add Stations', icon: 'ui-1_simple-add', class: '' },
-          { path: '/dashboard', title: 'Station 2', icon: 'icon2', class: '' },
-          { path: '/icons', title: 'Station 3', icon: 'icon3', class: '' },
+          { path: '/dashboard', title: 'Maintanace', icon: 'ui-1_settings-gear-63', class: '' },
+      
       ] 
     },
     { path: '/icons', title: 'TRANSACTIONS',  icon:'shopping_credit-card', class: '' },

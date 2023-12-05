@@ -28,18 +28,16 @@
   }
   
   .card {
-    size: 900px;
+   
     background: linear-gradient(90deg, rgb(96, 4, 4) 0%, rgba(167, 3, 3, 0.72) 100%);
     color: rgb(248, 248, 248);
     padding: 36px;
-    margin-left: 90px;
-     margin-top: 140px; /* Adjust as per your design */
+    /* Adjust as per your design */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 120%; /* Adjust this as needed */
-    max-width: 500px; /* Adjust this as needed */
-    display: flex;
-    flex-direction: column;
+     /* Adjust this as needed */
+    display: absolute;
+    flex-direction: row;
     align-items: center;
     z-index: 2;
   }
