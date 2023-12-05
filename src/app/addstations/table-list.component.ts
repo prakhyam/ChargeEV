@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
-export interface Station {
+// Consolidated Station interface
+interface Station {
   id: string;
   name: string;
   location: string;
@@ -20,21 +20,12 @@ export class TableListComponent implements OnInit {
   currentStation: Station = this.getNewStation();
   editing = false;
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
-  ngOnInit() {
-    this.loadStations();
-  }
-
-  loadStations() {
-    // Update the API endpoint below with the correct URL of your API
-    this.http.get<Station[]>('/api/stations').subscribe(
-      (data: Station[]) => this.stations = data,
-      (error) => console.error(error)
-    );
-  }
+  ngOnInit() {}
 
   getNewStation(): Station {
+    // Returns a new station object with all fields initialized
     return {
       id: '',
       name: '',
@@ -45,44 +36,34 @@ export class TableListComponent implements OnInit {
     };
   }
 
-  submitStation(formValue: Station) {
+  submitStation(formValue: any) {
+    // Check if we're in editing mode
     if (this.editing) {
-      // Update the API endpoint below with the correct URL of your API
-      this.http.put(`/api/stations/${formValue.id}`, formValue).subscribe(
-        () => {
-          const index = this.stations.findIndex((s) => s.id === formValue.id);
-          if (index !== -1) {
-            this.stations[index] = formValue;
-          }
-          this.editing = false;
-          this.currentStation = this.getNewStation();
-        },
-        (error) => console.error(error)
-      );
+      // Updating an existing station
+      const existingStation = this.stations.find(s => s.id === this.currentStation.id);
+      if (existingStation) {
+        Object.assign(existingStation, formValue);
+      }
+      this.editing = false;
     } else {
-      // Update the API endpoint below with the correct URL of your API
-      this.http.post<Station>('/api/stations', formValue).subscribe(
-        (newStation) => {
-          this.stations.push(newStation);
-          this.currentStation = this.getNewStation();
-        },
-        (error) => console.error(error)
-      );
+      // Adding a new station
+      if (this.stations.some(s => s.id === formValue.id)) {
+        alert('Station ID is already taken.');
+        return;
+      }
+      this.stations.push(formValue as Station);
     }
+
+    // Reset the form and currentStation
+    this.currentStation = this.getNewStation();
   }
 
   startUpdate(station: Station) {
-    this.currentStation = { ...station };
+    this.currentStation = {...station};
     this.editing = true;
   }
 
   deleteStation(stationId: string) {
-    // Update the API endpoint below with the correct URL of your API
-    this.http.delete(`/api/stations/${stationId}`).subscribe(
-      () => {
-        this.stations = this.stations.filter((s) => s.id !== stationId);
-      },
-      (error) => console.error(error)
-    );
+    this.stations = this.stations.filter(s => s.id !== stationId);
   }
 }
