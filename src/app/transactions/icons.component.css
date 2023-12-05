@@ -4,10 +4,12 @@
     max-width: 100%; /* Ensures the table does not exceed the card */
     border-collapse: collapse; /* Collapses cell borders */
     table-layout: fixed; /* Fixes table layout to avoid overflow */
+    font-size: 0.4 rem;
 }
 
 /* Style the table header */
 .table thead th {
+    font-size: 0.4 rem;
     background-color: #f2f2f2; /* Light grey background for the header */
     padding: 10px; /* Padding inside header cells */
     text-align: left; /* Left-align text in header cells */
@@ -30,11 +32,11 @@
 /* Style table on smaller screens */
 @media screen and (max-width: 768px) {
     .table {
-        font-size: 14px; /* Reduce font size for smaller screens */
+        font-size: 10px; /* Reduce font size for smaller screens */
     }
     
     .table thead th,
     .table tbody td {
-        padding: 8px; /* Reduce padding for smaller screens */
+        padding: 6px; /* Reduce padding for smaller screens */
     }
 }

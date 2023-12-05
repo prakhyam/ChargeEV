@@ -14,6 +14,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { ComponentsModule } from "../../components/components.module";
+import { AddStationComponent } from '../../add-station/add-station.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { ComponentsModule } from "../../components/components.module";
         TypographyComponent,
         IconsComponent,
         MapsComponent,
+        AddStationComponent,
         NotificationsComponent,
     ],
     imports: [

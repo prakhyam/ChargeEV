@@ -35,7 +35,6 @@
               <p>ZIP: {{ selectedStation.ZIP }}</p>
               <p>Level 2 Chargers: {{ selectedStation.Num_Level_2 }}</p>
               <p>Level 1 Chargers: {{ selectedStation.Num_level_1 }}</p>
-              <button (click)="bookStation(selectedStation.id)">Book Station</button>
             </div>
             <div [ngClass]="mapClass" id="map" style="height: 600px;"></div>
             <div class="map-legend">

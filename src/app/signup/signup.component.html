@@ -1,35 +1,69 @@
-<div class="container" >
-    <div class="row">
+
+
+<div class="full-page-background">
+    <div class="container">
+      <div class="row justify-content-center align-items-center">
         <div class="col-md-6">
-            <div class="card">
-                <div class="text-center">
-                    <h1>Signup</h1>
+          <div class="card text-center">
+            <h1>Sign Up</h1>
+            <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+                    
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="mb-3">
+                    <label for="mobileNumber" class="form-label">Mobile Number</label>
+                    <input type="text" class="form-control" id="mobileNumber" formControlName="mobileNumber">
+                    <div *ngIf="signupForm.controls.mobileNumber.invalid && signupForm.controls.mobileNumber.touched">
+                      <small class="text-danger" *ngIf="signupForm.controls.mobileNumber.errors?.pattern">
+                        Mobile number must be 10 digits.
+                      </small>
+                    </div>
+                  </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                     
                 </div>
-                <form>
-                    
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Full Name</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1">
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input [type]="showPassword ? 'text' : 'password'" class="form-control" id="password" formControlName="password">
+                    <div *ngIf="signupForm.controls.password.invalid && signupForm.controls.password.touched">
+                        <div *ngIf="loginForm.controls.password.invalid && loginForm.controls.password.touched">
+                            <small class="text-danger" *ngIf="loginForm.controls.password.errors?.required">
+                              Password is required.
+                            </small>
+                            <small class="text-danger" *ngIf="loginForm.controls.password.errors?.lengthError">
+                              Password must be at least 6 characters long.
+                            </small>
+                            <small class="text-danger" *ngIf="loginForm.controls.password.errors?.specialCharError">
+                              Password must contain at least 2 special characters.
+                            </small>
+                          </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Mobile Number</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1">
+                </div>
+
+                <div class="mb-3">
+                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                    <input [type]="showPassword ? 'text' : 'password'" class="form-control" id="confirmPassword" formControlName="confirmPassword">
+                    <div *ngIf="signupForm.errors?.mismatch && signupForm.controls.confirmPassword.touched">
+                      <small class="text-danger">Passwords do not match.</small>
                     </div>
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1">
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-                <a routerLink="/login">Already Registered? Click To Login</a>
-            </div>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="showPasswordCheck" (change)="togglePasswordVisibility()">
+                    <label class="form-check-label" for="showPasswordCheck">Show Password</label>
+                  </div>
+                
+                <button routerLink="/login"  [disabled]="!signupForm.valid" type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <a routerLink="/login">Already Registered? Click To Login</a>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
+  
+
+

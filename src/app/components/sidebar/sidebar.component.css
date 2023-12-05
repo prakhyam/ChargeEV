@@ -1,13 +1,66 @@
 
 .nav li.active, .nav li:hover {
-    color:  #00538b;
+    color:  #c8cacc;
 }
 
 .nav li.active a, .nav li.active a i, .nav li.active a p,
 .nav li:hover a, .nav li:hover a i, .nav li:hover a p {
-    color:  #00538b; 
+    color:  #c9d4dc; 
 }
 
 .nav li, .nav li a, .nav li a i, .nav li a p {
     color: white; 
 }
+
+/* ...existing styles... */
+
+.nav {
+    width: 100%; /* Ensure the nav takes the full width of the sidebar */
+    padding-left: 0; /* Remove padding from the ul */
+  }
+  
+  .nav-item {
+    width: 100%; /* Full width to align with the sidebar */
+  }
+  .nav-item a {
+    display: flex; /* Use flexbox for aligning icon and text */
+    align-items: center; /* Center items vertically */
+    text-decoration: none; /* No underlines on links */
+  }
+  
+  .nav-item p {
+    margin: 0; /* Remove margin from the paragraph */
+    padding-left: 15px; /* Add some space between the icon and text */
+  }
+  
+  .submenu-item {
+    display: block; /* Display as block to take full width */
+    padding-left: 30px; /* Indent submenu items for hierarchy */
+  }
+  
+  
+  .nav-item .submenu {
+    display: none;
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .nav-item.submenu-active .submenu {
+    display: block; /* Shows the submenu */
+  }
+  
+  .submenu-item {
+    padding: 10px;
+    background-color: #1e2020; /* Match the sidebar background */
+  }
+  
+  .submenu-item:hover {
+    background-color: rgb(71, 67, 67); /* Change background to white on hover */
+    color: #272a2a; /* Change text color on hover if needed */
+  }
+  
+  /* You might also want to add some transition for smooth hover effect */
+  .submenu-item {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  

@@ -7,6 +7,11 @@
     background-color: black;
     color: white;
 }
+.navbar li {
+  list-style-type: none; /* Removes bullet points */
+  margin: 0; /* Removes default margin */
+  padding: 0; /* Removes default padding */
+}
 
 // Set the card's background to black and text color to white for visibility
 .card {
@@ -185,7 +190,7 @@ button:hover {
   height: 900px; // Or use 100vh for full viewport height
 
   .search-results-container {
-    flex: 0 0 350px; // Assigns fixed width to the station list
+    flex: 0 0 90px; // Assigns fixed width to the station list
     overflow-y: auto; // Enables scrolling for the station list
     background-color: #f8f9fa; // A light background color for the station list
     float: left;
@@ -209,7 +214,7 @@ button:hover {
   transition: transform 0.3s ease-out;
   top: 0;
   left: 0; // Adjust if you want the list to be a bit more left
-  width: 350px; // Width of the station list
+  width: 100px; // Width of the station list
   max-height: 100%;
   padding: 1rem;
   background-color: rgba(255, 255, 255, 0.95); // Translucent white

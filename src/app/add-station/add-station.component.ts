@@ -9,13 +9,12 @@ export interface Station {
   zipCode: string;
   capacity: number;
 }
-
 @Component({
-  selector: 'app-table-list',
-  templateUrl: './table-list.component.html',
-  styleUrls: ['./table-list.component.css']
+  selector: 'app-add-station',
+  templateUrl: './add-station.component.html',
+  styleUrls: ['./add-station.component.scss']
 })
-export class TableListComponent implements OnInit {
+export class AddStationComponent implements OnInit {
   stations: Station[] = [];
   currentStation: Station = this.getNewStation();
   editing = false;

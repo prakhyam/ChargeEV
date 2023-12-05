@@ -5,20 +5,24 @@ declare interface RouteInfo {
     title: string;
     icon: string;
     class: string;
+    submenu?: RouteInfo[]; 
 }
 export const ROUTES: RouteInfo[] = [
     { path: '/dashboard', title: 'Dashboard',  icon: 'design_app', class: '' },
     { path: '/maps', title: 'Maps',  icon:'location_map-big', class: '' },
-    
-    
-    
-    { path: '/table-list', title: 'STATIONS',  icon:'location_pin', class: '' },
+    { 
+      path: '/table-list', 
+      title: 'Station Management',  
+      icon:'location_pin', 
+      class: '', 
+      submenu: [
+          { path: '/add-stations', title: ' Add Stations', icon: 'ui-1_simple-add', class: '' },
+          { path: '/dashboard', title: 'Station 2', icon: 'icon2', class: '' },
+          { path: '/icons', title: 'Station 3', icon: 'icon3', class: '' },
+      ] 
+    },
     { path: '/icons', title: 'TRANSACTIONS',  icon:'shopping_credit-card', class: '' },
-    /*{ path: '/table-list', title: 'Table List',  icon:'design_bullet-list-67', class: '' },
-    { path: '/icons', title: 'Icons',  icon:'education_atom', class: '' },
-    { path: '/typography', title: 'Typography',  icon:'text_caps-small', class: '' },
-    { path: '/icons', title: 'Icons',  icon:'education_atom', class: '' },
-     { path: '/user-profile', title: 'User Profile',  icon:'users_single-02', class: '' },*/
+  
 
 ];
 
@@ -30,14 +34,26 @@ export const ROUTES: RouteInfo[] = [
 export class SidebarComponent implements OnInit {
   menuItems!: any[];
   activeMenuItem: string = '';
+  activeSubmenu: string = '';
+  showSubmenu: boolean = false;
 
 setActive(path: string) {
     this.activeMenuItem = path;
+}
+toggleSubmenu(submenuTitle: string): void {
+  this.activeSubmenu = this.activeSubmenu === submenuTitle ? '' : submenuTitle;
 }
 
 isActive(path: string) {
     return this.activeMenuItem === path;
 }
+setSubmenuActive(submenu: string) {
+  this.activeSubmenu = submenu === this.activeSubmenu ? '' : submenu;
+}
+isSubmenuActive(submenu: string) {
+  return this.activeSubmenu === submenu;
+}
+
   constructor() { }
 
   ngOnInit() {

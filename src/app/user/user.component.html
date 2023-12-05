@@ -2,8 +2,24 @@
 <div class="row-2" style="background-color:black">
 <nav class="navbar" >
   <div class="navbar-brand">Charge EV</div>
-  <div class="navbar-menu" >
-  
+  <div class="navbar-menu">
+    <div class="navbar-user">
+      <ul>
+        <li class="nav-item" ngbDropdown>
+          <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle>
+            <i class="now-ui-icons users_single-02"></i>
+            <p>
+              <span class="d-lg-none d-md-block">Some Actions</span>
+            </p>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <a class="dropdown-item" href="#">Logout</a>
+            
+          </div>
+        </li>
+       
+      </ul>
+  </div>
   </div>
 </nav>
 
@@ -23,7 +39,6 @@
         </div>
         <p>{{ station.Address }}</p>
         <p>{{ station.City }}, {{ station.State }} {{ station.ZIP }}</p>
-        <!-- Add more details as needed -->
       </div>
       <div *ngIf="selectedStation" class="station-details-sidebar" style="color: black">
       <h2 style="color:rgb(127, 63, 63);"><strong>{{ selectedStation.Station_Name }}</strong></h2>

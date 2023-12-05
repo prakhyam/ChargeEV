@@ -13,6 +13,7 @@ interface ApiResponse {
     Latitude: number;
     Longitude: number;
     Num_Level_2: number;
+    //DC_Fast_Charging: number | null;
     Num_level_1: number | null; // Assuming it can be null based on NaN value
     State: string;
     Station_Name: string;
@@ -173,8 +174,8 @@ export class UserComponent implements OnInit {
               infoContent += `ZIP: ${location.ZIP}<br>`;
               infoContent += `Address: ${location.Address}<br>`;
               infoContent += `Level 2 Chargers: ${location.Num_Level_2}<br>`;
-              infoContent += `Level 1 Chargers: ${location.Num_level_1 ?? 'N/A'}</div>`;
-
+              infoContent += `Level 1 Chargers: ${location.Num_level_1 ?? 'N/A'}<br>`;
+              //infoContent += `DC Fast Charging: ${location. DC_Fast_Charging ?? 'N/A'}</div>`;
               this.addMarker(location);
               if (response.length > 0) {
                 // Assuming you want to zoom into the first result for now

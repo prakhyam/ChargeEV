@@ -50,7 +50,7 @@ import { Signup1Component } from './signup1/signup1.component';
     UserComponent,
     SignupComponent,
     Login1Component,
-    Signup1Component,  
+    Signup1Component,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
