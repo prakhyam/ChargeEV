@@ -16,9 +16,7 @@ export const ROUTES: RouteInfo[] = [
       icon:'location_pin', 
       class: '', 
       submenu: [
-          { path: '/add-stations', title: ' Add Stations', icon: 'ui-1_simple-add', class: '' },
-          { path: '/dashboard', title: 'Maintanace', icon: 'ui-1_settings-gear-63', class: '' },
-      
+          { path: '/add-stations', title: ' Add Stations', icon: 'ui-1_simple-add', class: '' },      
       ] 
     },
     { path: '/icons', title: 'TRANSACTIONS',  icon:'shopping_credit-card', class: '' },
