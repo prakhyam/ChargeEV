@@ -1,0 +1,79 @@
+.full-page-background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-image: url('/assets/img/EV_BG.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+.full-page-background::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.543); /* Overlay color */
+  pointer-events: none; /* Allows clicks to pass through */
+  z-index: 1;
+}
+  
+
+  .container {
+    height: 150vh;
+  
+  }
+  
+  .card {
+    size: 500px;
+    background: linear-gradient(90deg, rgb(96, 4, 4) 0%, rgba(167, 3, 3, 0.72) 100%);
+    color: rgb(248, 248, 248);
+    padding: 40px;
+    margin-left: 90px;
+     margin-top: 140px; /* Adjust as per your design */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 120%; /* Adjust this as needed */
+    max-width: 400px; /* Adjust this as needed */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+  }
+
+  
+
+  .form-control, .btn-primary {
+    width: calc(100% - 20px); /* Adjusts width taking padding into account */
+    margin-bottom: 15px;
+    padding: 10px;
+    display: block;
+  }
+  .form-control {
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
+    border: 1px solid #ddd; /* Adds a subtle border */
+  }
+  
+  
+  
+  .btn-primary {
+    background-color: rgb(198, 53, 53);
+    border: none;
+  }
+  
+  a {
+    color: rgb(255, 255, 255);
+    text-decoration: underline;
+    margin-top: 15px;
+  }
+  @media (max-width: 768px) {
+    .card {
+      width: 90%;
+      margin-top: 0;
+      transform: none;
+    }
+  }  
+   

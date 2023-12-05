@@ -1,0 +1,122 @@
+<div class="owner-dashboard">
+    <div class="owner-sidebar">
+        <!-- ... other parts of the sidebar ... -->
+        <div class="sidebar-wrapper" style="background-color: #1e2020;">
+            <ul class="nav">
+                <li *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item" 
+                    [class.active]="isActive(menuItem.title)" 
+                    (click)="setActive(menuItem.title)">
+                    
+                    <a  (click)="menuItem.submenu && toggleSubmenu(menuItem.title)">
+                        <i class="now-ui-icons {{menuItem.icon}}"></i>
+                        <p>{{menuItem.title}}</p>
+                        <i *ngIf="menuItem.submenu" class="now-ui-icons arrows-1_minimal-down"></i>
+                    </a>
+                    
+                    <ul *ngIf="menuItem.submenu && isSubmenuActive(menuItem.title)" class="submenu">
+                        <li *ngFor="let subItem of menuItem.submenu" [routerLink]="[subItem.path]" class="submenu-item">
+                            {{subItem.title}}
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-panel">
+
+        <div *ngIf="isActive('Dashboard')">
+            <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Usage Graph</h4>
+                </div>
+                <div class="card-body">
+                  <canvas id="usageGraph" baseChart
+                          [datasets]="usageChartData.datasets"
+                          [labels]="usageChartData.labels"
+                          [options]="chartOptions"
+                          [legend]="true"
+                          [chartType]="'line'">
+                  </canvas>
+                </div>
+              </div>
+            
+              <!-- Revenue Graph -->
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Revenue Graph</h4>
+                </div>
+                <div class="card-body">
+                  <canvas id="revenueGraph" baseChart
+                          [datasets]="revenueChartData.datasets"
+                          [labels]="revenueChartData.labels"
+                          [options]="chartOptions"
+                          [legend]="true"
+                          [chartType]="'bar'">
+                  </canvas>
+                </div>
+              </div>
+            
+    
+        </div>
+
+       <!-- <div class="panel-header panel-header-sm">
+       </div>-->     
+       <div class="station-management" *ngIf="isActive('Station Management')">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Charging points at {{ location }}</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="text-primary">
+                                    <th>Station Name</th>
+                                    <th>City</th>
+                                    <th>State</th>
+                                    <th>ZIP</th>
+                                    <th>Latitude</th>
+                                    <th>Longitude</th>
+                                    <th>Level 1 Chargers</th>
+                                    <th>Level 2 Chargers</th>
+                                    <th>Maintenance</th>
+                                    
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let station of stations">
+                                        <td>{{ station.Station_Name }}</td>
+                                        <td>{{ station.City }}</td>
+                                            <td>{{ station.State }}</td>
+                                            <td>{{ station.ZIP }}</td>
+                                            <td>{{ station.Latitude }}</td>
+                                            <td>{{ station.Longitude }}</td>
+                                            <td>{{ station.Num_level_1 }}</td>
+                                            <td>{{ station.Num_Level_2 }}</td>
+                                        <td>
+                                            <label class="switch">
+                                                <input type="checkbox" (change)="toggleMaintenance(1583, $event.target.checked)">
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
+                                        <td class="text-right">
+                                            <!-- Add any additional actions here -->
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+   
+      
+    <div *ngIf="isActive('Transactions')">
+        
+    </div>
+
+
+</div>

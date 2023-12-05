@@ -1,0 +1,31 @@
+
+<div class="logo" style="background-color: #272a2a !important; color:black">
+    <a href="" class="simple-text logo-mini">
+      <div class="logo-img">
+          <img src="assets/img/EV_Logo.jpeg"/>
+      </div>
+    </a>
+    <a href="" class="simple-text logo-normal">
+        Charge EV
+    </a>
+</div>
+<div class="sidebar-wrapper" style="background-color: #1e2020 !important; color:black">
+    <ul class="nav">
+        <li *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item" 
+            [class.active]="isActive(menuItem.path)" 
+            [class.submenu-active]="isSubmenuActive(menuItem.title)">
+            
+            <a [routerLink]="[menuItem.path]" (click)="menuItem.submenu && toggleSubmenu(menuItem.title)">
+                <i class="now-ui-icons {{menuItem.icon}}"></i>
+                <p>{{menuItem.title}}</p>
+                <i *ngIf="menuItem.submenu" class="now-ui-icons arrows-1_minimal-down"></i>
+            </a>
+            
+            <ul *ngIf="menuItem.submenu && isSubmenuActive(menuItem.title)" class="submenu">
+                <li *ngFor="let subItem of menuItem.submenu" [routerLink]="[subItem.path]" class="submenu-item">
+                    {{subItem.title}}
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

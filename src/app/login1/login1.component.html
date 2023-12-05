@@ -1,0 +1,48 @@
+<div class="full-page-background">
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-md-6">
+        <div class="card text-center">
+            <h1>Login</h1>
+           <!-- <form (ngSubmit)="login()">-->
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+              <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" formControlName="email">
+                <div *ngIf="loginForm.controls.email.invalid && loginForm.controls.email.touched">
+                  <small class="text-danger" *ngIf="loginForm.controls.email.errors?.email">Invalid email</small>
+                </div>
+              </div>
+              <div class="mb-3">
+                  <label for="password" class="form-label">Password</label>
+                  <input [type]="showPassword ? 'text' : 'password'" class="form-control" id="password" formControlName="password">
+                  <!-- Password validation error messages -->
+                  <div *ngIf="loginForm.controls.password.invalid && loginForm.controls.password.touched">
+                      <small class="text-danger" *ngIf="loginForm.controls.password.errors?.required">
+                        Password is required.
+                      </small>
+                      <small class="text-danger" *ngIf="loginForm.controls.password.errors?.lengthError">
+                        Password must be at least 6 characters long.
+                      </small>
+                      <small class="text-danger" *ngIf="loginForm.controls.password.errors?.specialCharError">
+                        Password must contain at least 2 special characters.
+                      </small>
+                    </div>
+                </div>
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="showPasswordCheck" (change)="togglePasswordVisibility()">
+                  <label class="form-check-label" for="showPasswordCheck">Show Password</label>
+                </div>
+              <button routerLink="/user" type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Submit</button>
+            </form>
+            <a routerLink="/signup1">New User? Click To Signup</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+
+  
